@@ -1,0 +1,165 @@
+body {
+    background-color: #343a40;
+    background-color: #212529;;
+    margin: 0;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+    background-color: #212529;
+    box-shadow: 3px 3px 10px black;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.search-bar {
+    box-sizing: border-box;
+    height: 50%;
+    width: 300px;
+    padding: 5px 5px;
+    margin-left: 10px;
+    border-width: 0;
+    border-top-left-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+    box-shadow: 3px 3px 10px black;
+}
+
+button {
+    box-sizing: border-box;
+    height: 50%;
+    background-color: #d00000;
+    color: white;
+    padding: 5px 5px;
+    border-radius: 0.25rem;
+    margin-left: 10px;
+    border-width: 0;
+    box-shadow: 3px 3px 10px black;
+    cursor: pointer;
+}
+
+.submit-button {
+    box-sizing: border-box;
+    margin-left: 0;
+    background-color: black;
+    border-top-left-radius: 0rem;
+    border-bottom-left-radius: 0rem;
+    width: 50px;
+}
+
+.submit-button:hover {
+    opacity: 0.7;
+}
+
+.result-container {
+    position: relative;
+    top: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.video-details {
+    box-sizing: border-box;
+    color: white;
+    height: auto;
+    margin: 10px 10px;
+    display: inline-block;
+    box-shadow: 3px 3px 10px black;
+    transition: all 0.5s;
+}
+
+.video-details:hover {
+    cursor: pointer;
+}
+
+.video-details:hover #thumbnail {
+    opacity: 0.7;
+}
+
+.video-details:hover #video-link {
+    text-decoration: underline;
+}
+
+.details {
+    padding: 0px 5px;
+    word-wrap: break-word;
+}
+
+.thumbnail {
+    width: 100%;
+}
+
+.video-link {
+    text-decoration: none;
+    color: white;
+}
+
+.view-count {
+    display: inline;
+    font-size: small;
+    opacity: 0.6;
+}
+
+.channel-title {
+    font-size: small;
+    opacity: 0.6;
+}
+
+.seperator {
+    display: inline;
+}
+
+.published-date {
+    display: inline;
+    font-size: small;
+    opacity: 0.6;
+}
+
+.description {
+    font-size: medium;
+    font-size: small;
+    opacity: 0.6;
+}
+
+.search-result {
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    justify-content: space-evenly;
+    transition: all 0.5s;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0px;
+}
+
+.page {
+    padding: 8px 15px;
+    color: white;
+    margin: 0px 20px;
+    font-size: large;
+    cursor: pointer;
+}
+
+.arrow {
+    margin-left: 5px;
+    margin-right: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+.active {
+    background-color: white;
+    color: black;
+}
+
+@media screen and (max-width: 768px) {
+    .search-result {
+        grid-template-columns: 50% 50%;
+    }
+}
