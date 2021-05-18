@@ -1,14 +1,21 @@
 window.videosPerPage = 4;
 window.currentPage = 1;
 
-document.getElementById("submit-button").addEventListener("click", execute);
+window.onload = () => {
+    const query = "javascript";
+    appendData(query);
+}
 
-async function execute() {
-    var query = document.getElementById("search-bar").value;
-    var videos = await getVideosFromApi(query);
-    console.log(videos);
+document.getElementById("submit-button").addEventListener("click", () => {
+    const query = document.getElementById("search-bar").value;
+    window.currentPage = 1;
+    appendData(query);
+});
+
+var appendData = async (query) => {
+    const videos = await getVideosFromApi(query);
     window.videosPerPage = getVideosPerPageOnScreenWidth(window);
     pagination(videos, window);
-    var initialVideoIndex = getVideoIndex(currentPage);
+    const initialVideoIndex = getVideoIndex(currentPage);
     displayVideosOnPage(videos.slice(initialVideoIndex, initialVideoIndex + videosPerPage));
 }
