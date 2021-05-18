@@ -1,17 +1,14 @@
-function pagination(videos, window) {
+var pagination = (videos, window) => {
     const videosPerPage = getVideosPerPageOnScreenWidth(window);
-    if(window.screen.width <= 768) {
-        paginationForMobiles(videos, videosPerPage);
-    } else {
-        paginationForLaptops(videos, videosPerPage);
-    }
+    window.screen.width <= 768 ? paginationForMobiles(videos, videosPerPage) :
+     paginationForLaptops(videos, videosPerPage);
 }
 
-function paginationForMobiles(videos, videosPerPage) {
-    var paginationContainer = document.getElementById("pagination-container");
+var paginationForMobiles = (videos, videosPerPage) => {
+    const paginationContainer = document.getElementById("pagination-container");
     paginationContainer.innerHTML = "";
 
-    var leftArrow = document.createElement("i");
+    const leftArrow = document.createElement("i");
     leftArrow.classList.add("fas");
     leftArrow.classList.add("fa-arrow-circle-left");
     leftArrow.classList.add("arrow");
@@ -19,7 +16,7 @@ function paginationForMobiles(videos, videosPerPage) {
     leftArrow.id = "left-arrow";
     paginationContainer.appendChild(leftArrow);
 
-    var rightArrow = document.createElement("i");
+    const rightArrow = document.createElement("i");
     rightArrow.classList.add("fas");
     rightArrow.classList.add("fa-arrow-circle-right");
     rightArrow.classList.add("arrow");
@@ -30,41 +27,41 @@ function paginationForMobiles(videos, videosPerPage) {
     addEventListenersToPageArrows(paginationContainer, videos, videosPerPage);
 }
 
-function addEventListenersToPageArrows(paginationContainer, videos, videosPerPage) {
-    var pageCount = getTotalPages(videos.length, videosPerPage);
-    var pageArrows = paginationContainer.children;
-    var leftArrow = pageArrows[0];
-    var rightArrow = pageArrows[1];
+var addEventListenersToPageArrows = (paginationContainer, videos, videosPerPage) => {
+    const pageCount = getTotalPages(videos.length, videosPerPage);
+    const pageArrows = paginationContainer.children;
+    const leftArrow = pageArrows[0];
+    const rightArrow = pageArrows[1];
 
     leftArrow.addEventListener("click", function() {
-        if(window.currentPage > 1) {
+        if (window.currentPage > 1) {
             window.currentPage--;
-            var initialVideoIndex = getVideoIndex(currentPage);
+            const initialVideoIndex = getVideoIndex(currentPage);
             displayVideosOnPage(videos.slice(initialVideoIndex, initialVideoIndex + videosPerPage));
         }
     });
 
     rightArrow.addEventListener("click", function() {
-        if(window.currentPage != pageCount) {
+        if (window.currentPage != pageCount) {
             window.currentPage++;
-            var initialVideoIndex = getVideoIndex(currentPage);
+            const initialVideoIndex = getVideoIndex(currentPage);
             displayVideosOnPage(videos.slice(initialVideoIndex, initialVideoIndex + videosPerPage));
         }
     });
 }
 
-function paginationForLaptops(videos, videosPerPage) {
-    var pageCount = getTotalPages(videos.length, videosPerPage);
-    var paginationContainer = document.getElementById("pagination-container");
+var paginationForLaptops = (videos, videosPerPage) => {
+    const pageCount = getTotalPages(videos.length, videosPerPage);
+    const paginationContainer = document.getElementById("pagination-container");
     paginationContainer.innerHTML = "";
     
     for(let i = 0; i < pageCount; i++) {
-        var paginationTemplate = document.getElementById("pagination-template");
-        var node = document.importNode(paginationTemplate.content, true);
-        var page = node.getElementById("page");
+        const paginationTemplate = document.getElementById("pagination-template");
+        const node = document.importNode(paginationTemplate.content, true);
+        const page = node.getElementById("page");
         page.id = "page-" + (i+1);
         page.textContent = i+1;
-        if(i == 0) {
+        if (i == 0) {
           page.classList.add("active");
         }
         paginationContainer.appendChild(page);
@@ -72,16 +69,15 @@ function paginationForLaptops(videos, videosPerPage) {
     addEventListenersToPageNumberButtons(paginationContainer, videos);
 }
 
-function addEventListenersToPageNumberButtons(paginationContainer, videos) {
-    var pages = paginationContainer.children;
-    for(let i in pages) {
-        var page = pages[i];
+var addEventListenersToPageNumberButtons = (paginationContainer, videos) => {
+    const pages = paginationContainer.children;
+    for(let page of pages) {
         if(typeof page == "object") {
             page.addEventListener("click", function() {
-                var pageNumber = this.id.charAt(5);
-                var initialVideoIndex = getVideoIndex(pageNumber);
+                const pageNumber = this.id.charAt(5);
+                const initialVideoIndex = getVideoIndex(pageNumber);
                 displayVideosOnPage(videos.slice(initialVideoIndex, initialVideoIndex + videosPerPage));
-                var previousPage = document.getElementById("page-" + currentPage);
+                const previousPage = document.getElementById("page-" + currentPage);
                 previousPage.classList.remove("active");
                 window.currentPage = parseInt(pageNumber);
                 document.getElementById("page-"+ pageNumber).classList.add('active'); 
